@@ -39,9 +39,7 @@
     <!-- Se cambia el tema de algunos navegadores -->
     <meta name="theme-color" content="#fafafa" />
     <!-- Código de las plataformas de Análisis -->
-    <script></script>
-    <!-- Scripts a cargar antes de la renderización -->
-    <script src="preloader.js"></script>
+    
   </head>
   <body>
     <div id="container">
@@ -67,7 +65,7 @@
         <label>Password</label>
       </div>
       <button class="boton_login" type="submit">LOGIN</button>
-      <input type="hidden" name="accion" value="registro">
+      <input type="hidden" name="accion" value="sesion">
       <button onclick="window.location.href='registro.php'" class="boton_login">REGISTRARSE</button>
 
      

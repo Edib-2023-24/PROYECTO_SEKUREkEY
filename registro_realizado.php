@@ -51,10 +51,10 @@
       
       <section class="box_login">
   <img src="./img/desktop/account.png" alt="">
-  <h1>REGISTRADO</h1>
+  
   
 </section>
-
+<h1>USUARIO INCORRECTO</h1>
 
 
  <div class="login-box">
