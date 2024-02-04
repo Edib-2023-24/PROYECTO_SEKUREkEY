@@ -9,7 +9,7 @@
 <body>
     <footer class="footer">
 
-    <nav class="box_footer_privacidad"><a href="privacidad.html"><h2>Politica de Privacidad</h2></a><a href="cookie.html"><h2>Politica
+    <nav class="box_footer_privacidad"><a href="privacidad.php"><h2>Politica de Privacidad</h2></a><a href="cookies.php"><h2>Politica
           de Cookies</h2></a></nav>
           <nav class="box_footer_contacto">
   <div class="item">
@@ -27,10 +27,9 @@
 </nav>
 
     <nav class="box_footer_rrss">
-    <img src="./img/desktop/INSTAGRAM.png" alt="Instagram">
-        </a>
+        <a href="https://instagram.com/"><img src="./img/desktop/INSTAGRAM.png" alt="Instagram"></a>
         <a href="https://twitter.com/"><img src="./img/desktop/TWITTER.png" alt=""></a>
-        <a href="https://twitter.com/"><img src="./img/desktop/FACEBOOK.png" alt=""></a>
+        <a href="https://facebook.com/"><img src="./img/desktop/FACEBOOK.png" alt=""></a>
     </nav>
 
 
