@@ -8,12 +8,356 @@
 
 /* Tipografía */
 @font-face {
-  font-family: "";
-  src: url("") format("woff2"), url("") format("woff");
+  font-family: "roboto";
+  src: url("../font/RobotoBold.woff2") format("woff2"), url("../font/RobotoBold.woff") format("woff");
 }
 
 /* ******************************** */
 
 /* Colores */
+:root {
+  /* Mode 1 */
+  /* colors */
+  --fondo-botones: #010101;
+  --texto-botones-logo: #fffbfb;
+}
 
 /* ******************************** */
+
+/*******BODY*****/
+body {
+
+  margin: 0;
+  min-width: 62.5rem;
+  background-image: linear-gradient(to right top, #0d9c30, #00855a, #006c6d, #005167, #00364c, #04324d, #0f2d4d, #1b274b, #34306a, #5a3384, #882d97, #ba11a0);
+}
+
+/******* TITULOS*******/
+h1 {
+  color: var(--texto-botones-logo);
+  font-family: 'roboto';
+
+}
+
+h2 {
+  color: var(--texto-botones-logo);
+  font-family: 'roboto';
+}
+
+h3 {
+  color: var(--texto-botones-logo);
+  font-family: 'roboto';
+}
+
+p {
+  color: var(--texto-botones-logo);
+  font-family: 'roboto';
+}
+
+
+/******header *********/
+
+#container {
+  width: 100%;
+  height: 1024px;
+}
+
+/******* HEADER TODAS LAS PAGINAS HEADER.PHP*****/
+.header {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  justify-content: space-around;
+
+}
+
+.logo {
+  width: 71px;
+  height: 71px;
+  border-radius: 50px;
+}
+
+/***** FIN HEADER ***********/
+
+
+/********** BOTONES PARA MENU HEADER TODAS LAS PAGINAS ********/
+.botones_inicio {
+  outline: none;
+  cursor: pointer;
+  border: none;
+  padding: 0.9rem 2rem;
+  margin: 0;
+  font-family: "roboto";
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  letter-spacing: 0.05rem;
+  font-weight: 700;
+  border-radius: 500px;
+  overflow: hidden;
+  background:var(--texto-botones-logo);
+  color:var(--texto-botones-logo);
+  margin-left: 10px;
+}
+
+.botones_inicio span {
+  position: relative;
+  z-index: 10;
+  transition: color 0.4s;
+}
+
+.botones_inicio:hover span {
+  color: var(--fondo-botones);
+}
+
+.botones_inicio::before,
+.botones_inicio::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.botones_inicio::before {
+  content: "";
+  background: #000;
+  width: 120%;
+  left: -10%;
+  transform: skew(30deg);
+  transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+.botones_inicio:hover::before {
+  transform: translate3d(100%, 0, 0);
+}
+
+a {
+  text-decoration: none;
+  color: var(--texto-botones--logo);
+  font-family: "roboto";
+
+}
+
+/***** FIN BOTONES
+
+/******* PAGINA FOOTER*******/
+.footer {
+  display: flex;
+  width: 100%;
+  height: 150px;
+
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.box_footer_privacidad {
+
+  width: 20%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+}
+
+.box_footer_contacto {
+
+  width: 12%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+}
+
+.item img {
+  max-width: 100%;
+  height: auto;
+}
+
+.box_footer_rrss {
+
+  width: 20%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/**** FIN PAGINA FOOTER**********/
+
+
+/********* MAIN PAGINA INDEX******/
+.main_index {
+  width: 100%;
+
+
+}
+
+.box_principal_index {
+  width: 100%;
+  height: 774px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.box_resultado_index {
+  width: 100%;
+  padding: 20px;
+  height: 150px;
+
+  display: felx;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-items: flex-start;
+  justify-content: center;
+
+}
+
+.resultado_index {
+  width: 500px;
+  height: 120px;
+  border-radius: 50px;
+  background-image: linear-gradient(to left bottom, #c5a9ba, #bb9ab7, #ad8cb7, #9981b9, #7e77bb, #5e7bbc, #397fb7, #0080ad, #178795, #4b897d, #6e8870, #858672);
+  display: flex;
+  align-items:center;
+  justify-content:center;
+  font-size:50px;
+}
+
+
+#resultado {
+  color: var(--texto-botones-logo);
+  font-family: 'roboto';
+}
+#valor_actual{
+color: var(--texto-botones-logo);
+font-size: 20px;
+display: flex;
+justify-content:center;
+}
+  
+
+.box_opciones_index {
+  width: 700px;
+  height: 300px;
+
+  display: flex;
+  flex-direction: column;
+  border-radius: 25px;
+
+
+}
+
+.texto_personalizar_index {
+  width: 100%;
+  height: 30px;
+
+  display: flex;
+  justify-content: center;
+}
+
+.box_longitud_index {
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to left bottom, #762154, #6d3665, #634670, #5c5375, #5b5e75, #505b6b, #4b565f, #4a5154, #393f3f, #292d2c, #1a1d1b, #080907);
+  display: flex;
+  border-radius: 50px;
+
+}
+
+.longitud_index {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  justify-content: center
+}
+
+.checkBox_index {
+  width: 25%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.opciones_index {
+  width: 25%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.opciones_index h3 {
+  margin-top: 10px;
+}
+
+/****** INPUT CHECK BOTCK******/
+.clear {
+  clear: both;
+}
+
+.checkBox {
+  display: block;
+  cursor: pointer;
+
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  border: 3px solid rgba(255, 255, 255, 0);
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0px 0px 0px 2px #fff;
+}
+
+.checkBox div {
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  top: -52px;
+  left: -52px;
+  position: absolute;
+  transform: rotateZ(45deg);
+  z-index: 100;
+}
+
+.checkBox input[type=checkbox]:checked+div {
+  left: -10px;
+  top: -10px;
+}
+
+.checkBox input[type=checkbox] {
+  position: absolute;
+  left: 50px;
+  visibility: hidden;
+}
+
+.transition {
+  transition: 300ms ease;
+}
