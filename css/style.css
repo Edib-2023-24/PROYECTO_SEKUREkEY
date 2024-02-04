@@ -579,4 +579,33 @@ justify-content:center;
   
 }
 
+/******** FIN PAGINA INFORMACION*******/
 
+
+/******** PAGINA LOGIN********/
+.box_login {
+  width: 100px;
+  height: 90px;
+  background-size: cover;
+  margin-top: 50px;
+  border-radius: 50%;
+  background-color: #ce0f0f;
+  color: var(--texto-botones--logo);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+/****** PAGINA USUARIO******/
+#resultado_usuario{
+  color:var(--texto-botones-logo);
+  font-family: 'roboto';
+  font-size: 16px;
+}
+#valor_actual_usuario{
+  color: var(--texto-botones-logo);
+  font-size: 20px;
+  display: flex;
+  justify-content:center;
+}
