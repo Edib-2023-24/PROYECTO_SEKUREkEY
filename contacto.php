@@ -46,6 +46,37 @@
   <body>
     <div id="container">
       <?php  include 'header.php'?>
+      <main class="contacto">
+      <h1>Cuéntenos cómo podemos ayudarle</h1>
+<section class="box_formulario">
+  <div class="login-box">
+    
+    <form action="" method="get">
+      <div class="user-box">
+        <input type="text" name="" required="">
+        <label><h3>EMAIL</h3></label>
+      </div>
+      <div class="user-box">
+       
+        <textarea name="" required=""></textarea>
+        <label><h3>CONTACTO</h3></label>
+      </div>
+      <center>
+        <a href="#">
+          ENVIAR
+          <span></span>
+        </a>
+      </center>
+      
+    </form>
+  </div>
+  
+</section>
+
+     
+
+      </main>
+      <?php include 'footer.php'?>
     </div>
 
   </body>

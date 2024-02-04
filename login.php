@@ -46,6 +46,8 @@
   <body>
     <div id="container">
       <?php  include 'header.php'?>
+      <main class="main_index"></main>
+      <?php include 'footer.php'?>
     </div>
 
   </body>

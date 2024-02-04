@@ -150,22 +150,21 @@ a {
   display: flex;
   width: 100%;
   height: 150px;
-
   display: flex;
   justify-content: space-around;
-
 }
+  
 
-.box_footer_privacidad {
-
-  width: 20%;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-
-}
+  
+  .box_footer_privacidad {
+    width: 20%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    display: flex;
+  
+  
+  }
 
 .box_footer_contacto {
 
@@ -203,19 +202,22 @@ a {
 /********* MAIN PAGINA INDEX******/
 .main_index {
   width: 100%;
-
-
+  height: 774px;
+  
+  display: flex;
+  flex-direction: column;
+  align-items:center;
 }
 
 .box_principal_index {
   width: 100%;
   height: 774px;
-
   display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;
 }
+
 
 .box_resultado_index {
   width: 100%;
@@ -361,3 +363,220 @@ justify-content:center;
 .transition {
   transition: 300ms ease;
 }
+
+/******* PAGINA CONTACTO*****/
+
+.contacto {
+  width: 100%;
+ height:774px;
+ 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+ 
+.box_formulario {
+  width: 50%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ 
+
+}
+
+/****** FORMULARIO DENTRO DE BOX_FORMULARIO*******/
+.login-box {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(24, 20, 20, 0.987) linear-gradient(to right top, #0d9c30, #00855a, #006c6d, #005167, #00364c, #04324d, #0f2d4d, #1b274b, #34306a, #5a3384, #882d97, #ba11a0);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+  border-radius: 10px;
+  margin-top: 100px;
+
+}
+
+.login-box .user-box {
+  position: relative;
+}
+
+.login-box .user-box input,
+.login-box .user-box textarea {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+  resize: none;
+}
+
+.login-box .user-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.login-box .user-box input:focus~label,
+.login-box .user-box input:valid~label,
+.login-box .user-box textarea:focus~label,
+.login-box .user-box textarea:valid~label {
+  top: -20px;
+  left: 0;
+  color: #bdb8b8;
+  font-size: 12px;
+}
+
+
+.login-box button {
+  display: inline-block;
+  padding: 10px 20px;
+  color: #ffffff;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 20px;
+  letter-spacing: 4px;
+  background-color: transparent;
+  border: 1px solid #fff;
+  cursor: pointer;
+
+}
+
+.login-box button:hover {
+  background: black;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #03f40f,
+    0 0 10px #03f40f,
+    0 0 20px #03f40f,
+    0 0 30px #03f40f;
+}
+
+.login-box button:nth-child(1) {
+  margin-right: 10px;
+}
+
+.login-box form a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #ffffff;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  letter-spacing: 4px;
+
+}
+
+.login-box a:hover {
+  background: black;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #03f40f,
+    0 0 10px #03f40f,
+    0 0 20px #03f40f,
+    0 0 30px #03f40f;
+}
+
+.login-box a span {
+  position: absolute;
+  display: block;
+}
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+
+  50%,
+  100% {
+    left: 100%;
+  }
+}
+
+.login-box a span:nth-child(1) {
+  bottom: 2px;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #0a0a0a, #ac0003);
+  animation: btn-anim1 2s linear infinite;
+}
+/****** FIN PAGINA CONTACTO********/
+
+
+/****** PAGINA INFORMACION******/
+
+.box_contenedor_foto{
+  width:100%;
+  height:300px;
+  display:flex;
+  flex-direction: row;
+  
+}
+
+.foto{
+  width: 20%;
+  height: 100%;
+  
+  display:flex;
+  justify-content: center;
+}
+.texto{
+  padding-top: 50px;
+  width: 60%;
+  height: 100%;
+  display: flex;
+ flex-direction: column;
+
+ align-items: center;
+
+ text-align: center;
+}
+.texto_comprimido{
+  display: flex;
+  align-items: center;
+  width: 60%;
+  height: 100%;
+ 
+
+  
+
+}.texto_bloque_uno {
+  width: 50%;
+  height: 200px;
+ margin-bottom: 10px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; /* Alinea el texto en el centro del contenedor */
+}
+
+.texto_bloque_uno p {
+  margin-top: 10px;
+ 
+  
+}
+
+
