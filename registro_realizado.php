@@ -45,8 +45,45 @@
   </head>
   <body>
     <div id="container">
-      <?php  include 'header_usuario.php'?>
-      <main class="main_index"></main>
+      <?php  include 'header.php'?>
+      <main class="main_index">
+      
+      
+      <section class="box_login">
+  <img src="./img/desktop/account.png" alt="">
+  <h1>REGISTRADO</h1>
+  
+</section>
+
+
+
+ <div class="login-box">
+ 
+    <form action="funciones.php" method="post">
+      <div class="user-box">
+        <input type="email" name="email" id="email" required="">
+        <label>Email</label>
+      </div> <div class="user-box">
+        <input type="password" name="password" id="password" required="">
+        <label>Password</label>
+      </div>
+      <button class="boton_login" type="submit">LOGIN</button>
+      <input type="hidden" name="accion" value="sesion">
+      <button onclick="window.location.href='registro.php'" class="boton_login">REGISTRARSE</button>
+    
+
+     
+      
+    </form>
+    
+   
+  </div>
+  
+
+ 
+
+      </main>
+      
       <?php include 'footer.php'?>
     </div>
 

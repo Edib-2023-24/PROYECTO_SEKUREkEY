@@ -131,7 +131,7 @@ function registrar($conexion) {
 
         if ($resultado) {
             // REENVIA A LA PAGINA LOGIN UNA VEZ INSERTADO LOS DATOS
-            header("Location: registro_realizado.html");
+            header("Location: registro_realizado.php");
             exit();
         } else {
             // CONTROLO LOS POSIBLES ERRORES

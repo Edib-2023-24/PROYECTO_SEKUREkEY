@@ -33,7 +33,7 @@ if (isset($_SESSION['userName'])) {
     <img class="logo" src="./img/desktop/LOGO.png" alt="logo">
     <h1>SEKUREKEY</h1>
     
-      <a class="botones_inicio" href="contacto.php"><span>LOGOUT</span></a>
+      <a class="botones_inicio" href="logout.php"><span>LOGOUT</span></a>
       <a class="botones_inicio" href="password.php"><span>PASSWORD</span></a>
       <a class="botones_inicio" href="login.php"><span><?php echo $nombreUsuario ?></span></a>
     </header>

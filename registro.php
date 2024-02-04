@@ -64,8 +64,8 @@
         <input type="password" name="password" id="password" required="">
         <label>Password</label>
       </div>
-      <button class="boton_login" type="submit">LOGIN</button>
-      <input type="hidden" name="accion" value="sesion">
+      <button class="boton_login" type="submit">REGISTRO</button>
+      <input type="hidden" name="accion" value="registro">
       <button onclick="window.location.href='login.php'" class="boton_login">ATRAS</button>
 
      
