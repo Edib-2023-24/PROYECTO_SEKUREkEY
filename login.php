@@ -53,22 +53,20 @@
 
 
  <div class="login-box">
-    
-    <form action="funciones.php" method="post">
-      <div class="user-box">
-        <input type="email" name="email" id="email" required="">
-        <label>Email</label>
-      </div> <div class="user-box">
-        <input type="password" name="password" id="password" required="">
-        <label>Password</label>
-      </div>
-      <button class="boton_login" type="submit">LOGIN</button>
-      <input type="hidden" name="accion" value="sesion">
-      <button onclick="window.location.href='registro.php'" class="boton_login">REGISTRARSE</button>
+ <form action="funciones.php" method="post" onsubmit="return validacion()" novalidate>
+    <div class="user-box">
+        <input type="email" name="email" id="email" required="" placeholder="EMAIL">
+        <span id="emailIncorrecto" class="mensajeErroneo"></span>
+    </div>
+    <div class="user-box">
+        <input type="password" name="password" id="password" required="" placeholder="PASSWORD">
+        <span id="passwordIncorrecto" class="mensajeErroneo"></span>
+    </div>
+    <button class="boton_login" type="submit">LOGIN</button>
+    <input type="hidden" name="accion" value="sesion">
+    <button onclick="window.location.href='registro.php'" class="boton_login">REGISTRARSE</button>
+</form>
 
-     
-      
-    </form>
  
   </div>
 
@@ -77,6 +75,6 @@
       </main>
       <?php include 'footer.php'?>
     </div>
-
+<script src="usuario.js"></script>
   </body>
 </html>

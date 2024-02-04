@@ -156,8 +156,6 @@ function registrarPassword($conexion) {
     if (isset($_POST['resultadoPassword'])) {
         $resultadoPassword = $_POST['resultadoPassword'];
         $idUsuario = $_SESSION['id_usuario'];
-        
-
 
         // Consultar el total de contraseñas asociadas al usuario
         $consultaTotalRegistros = "SELECT COUNT(*) as total FROM passwordguardado WHERE id_usuario = $idUsuario";
@@ -174,15 +172,19 @@ function registrarPassword($conexion) {
             $resultadoInsertarPassword = mysqli_query($conexion, $insertarPasswordBBDD);
 
             if ($resultadoInsertarPassword) {
-                session_start();
                 header("Location: usuario.php");
                 exit();
             } else {
                 echo "Error al insertar: " . mysqli_error($conexion);
             }
         } else {
+            // Obtener el ID de la contraseña más antigua asociada al usuario
+            $consultaIdPasswordAntiguo = "SELECT id_password FROM passwordguardado WHERE id_usuario = $idUsuario ORDER BY id_password ASC LIMIT 1";
+            $resultadoIdPasswordAntiguo = mysqli_query($conexion, $consultaIdPasswordAntiguo);
+            $idPasswordAntiguo = mysqli_fetch_assoc($resultadoIdPasswordAntiguo)['id_password'];
+
             // Actualizar la contraseña más antigua asociada al usuario
-            $actualizarPassword = "UPDATE passwordguardado SET password='$resultadoPassword' WHERE id_usuario = $idUsuario ORDER BY id_password ASC LIMIT 1";
+            $actualizarPassword = "UPDATE passwordguardado SET password='$resultadoPassword' WHERE id_password = $idPasswordAntiguo";
             $resultadoActualizarPassword = mysqli_query($conexion, $actualizarPassword);
 
             if ($resultadoActualizarPassword) {
@@ -194,6 +196,7 @@ function registrarPassword($conexion) {
         }
     }
 }
+
 
 
 // LLAMO A LA FUNCION

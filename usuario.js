@@ -104,3 +104,58 @@ document.getElementById("formularioResultado").submit();
 
 
 }
+
+// FUNCION PARA VALIDAR EN EL LADO DEL CLIENTE 
+function validacion() {
+    let emailInput = document.getElementById("email");
+    let email = emailInput.value;
+    let password = document.getElementById("password").value;
+    let accion = document.getElementsByName("accion")[0].value;
+    let expresionregularEmail = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
+    let emailIncorrecto = document.getElementById("emailIncorrecto");
+    let passwordincorrecto = document.getElementById('passwordIncorrecto');
+    let expresionRegularpassword = /^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+]).*$/;
+
+    let emailValido = expresionregularEmail.test(email);
+    let passwordValida = expresionRegularpassword.test(password);
+
+    // Reiniciar mensajes de error
+    emailIncorrecto.innerText = "";
+    passwordincorrecto.innerText = "";
+
+    // Validar email y mostrar error si es necesario
+    if (!emailValido) {
+        // Mostrar mensaje de error para email
+        emailIncorrecto.innerText = "Email Incorrecto";
+        setTimeout(function () {
+            emailIncorrecto.innerText = "";
+        }, 10000); // 10000 milisegundos = 10 segundos
+        return false;  // Detener la validación si el correo electrónico no es válido
+    }
+
+    // Validar contraseña y mostrar error si es necesario
+    if (!passwordValida) {
+        // Mostrar mensaje de error para contraseña
+        passwordincorrecto.innerText = "Password Incorrecto";
+        setTimeout(function () {
+            passwordincorrecto.innerText = "";
+        }, 10000);
+        return false;  // Detener la validación si la contraseña no es válida
+    }
+
+    // Realizar más validaciones según sea necesario
+    if (accion === "sesion") {
+        // Redirigir a funciones.php
+         window.location.href = "funciones.php";
+    }
+
+    // Devolver true solo si ambos son válidos
+    return true;
+}
+
+
+
+
+
+
+

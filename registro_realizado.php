@@ -54,7 +54,7 @@
   
   
 </section>
-<h1>USUARIO INCORRECTO</h1>
+<h1>REGISTRO REALIZADO</h1>
 
 
  <div class="login-box">

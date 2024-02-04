@@ -56,13 +56,13 @@
 
  <div class="login-box">
     
-    <form action="funciones.php" method="post">
+    <form action="funciones.php" method="post" onsubmit="return validacion()" novalidate>
       <div class="user-box">
-        <input type="email" name="email" id="email" required="">
-        <label>Email</label>
+        <input type="email" name="email" id="email" required="" placeholder="EMAIL">
+        <span id="emailIncorrecto" class="mensajeErroneo"></span>
       </div> <div class="user-box">
-        <input type="password" name="password" id="password" required="">
-        <label>Password</label>
+        <input type="password" name="password" id="password" required="" placeholder="PASSWORD">
+        <span id="passwordIncorrecto" class="mensajeErroneo"></span>
       </div>
       <button class="boton_login" type="submit">REGISTRO</button>
       <input type="hidden" name="accion" value="registro">
@@ -79,6 +79,6 @@
       </main>
       <?php include 'footer.php'?>
     </div>
-
+<script src="usuario.js"></script>
   </body>
 </html>
