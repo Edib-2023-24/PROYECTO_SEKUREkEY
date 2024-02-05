@@ -35,7 +35,7 @@ if (isset($_SESSION['userName'])) {
     
       <a class="botones_inicio" href="logout.php"><span>LOGOUT</span></a>
       <a class="botones_inicio" href="password.php"><span>PASSWORD</span></a>
-      <a class="botones_inicio" href="login.php"><span><?php echo $nombreUsuario ?></span></a>
+      <a class="botones_inicio" href="usuario.php"><span><?php echo $nombreUsuario ?></span></a>
     </header>
 </body>
 </html>

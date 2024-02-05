@@ -69,9 +69,7 @@ p {
   display: flex;
   flex-direction: row;
   align-items: center;
-
   justify-content: space-around;
-
 }
 
 .logo {
@@ -79,6 +77,8 @@ p {
   height: 71px;
   border-radius: 50px;
 }
+
+
 
 /***** FIN HEADER ***********/
 
@@ -140,8 +140,8 @@ a {
   text-decoration: none;
   color: var(--texto-botones--logo);
   font-family: "roboto";
-
 }
+
 
 /***** FIN BOTONES
 
@@ -162,18 +162,18 @@ a {
     align-items: center;
     justify-content: space-around;
     display: flex;
-  
-  
   }
+  
+  
 
 .box_footer_contacto {
-
   width: 12%;
-
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
+
+
 
 .item {
   display: flex;
@@ -188,13 +188,13 @@ a {
 }
 
 .box_footer_rrss {
-
   width: 20%;
-
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
+
+
 
 /**** FIN PAGINA FOOTER**********/
 
@@ -203,11 +203,12 @@ a {
 .main_index {
   width: 100%;
   height: 774px;
- 
   display: flex;
   flex-direction: column;
   align-items:center;
 }
+  
+ 
 
 .box_principal_index {
   width: 100%;
@@ -223,15 +224,15 @@ a {
   width: 100%;
   padding: 20px;
   height: 150px;
-
   display: felx;
   align-items: center;
   display: flex;
   flex-direction: row;
   justify-items: flex-start;
   justify-content: center;
-
 }
+
+
 
 .resultado_index {
   width: 500px;
@@ -260,21 +261,21 @@ justify-content:center;
 .box_opciones_index {
   width: 700px;
   height: 300px;
-
   display: flex;
   flex-direction: column;
   border-radius: 25px;
-
-
 }
+
+
+
 
 .texto_personalizar_index {
   width: 100%;
   height: 30px;
-
-  display: flex;
   justify-content: center;
+  display: flex;
 }
+  
 
 .box_longitud_index {
   width: 100%;
@@ -282,8 +283,8 @@ justify-content:center;
   background-image: linear-gradient(to left bottom, #762154, #6d3665, #634670, #5c5375, #5b5e75, #505b6b, #4b565f, #4a5154, #393f3f, #292d2c, #1a1d1b, #080907);
   display: flex;
   border-radius: 50px;
-
 }
+
 
 .longitud_index {
   width: 50%;
@@ -297,23 +298,23 @@ justify-content:center;
 .checkBox_index {
   width: 25%;
   height: 100%;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 
 .opciones_index {
   width: 25%;
   height: 100%;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
+
+
 
 .opciones_index h3 {
   margin-top: 10px;
@@ -327,7 +328,6 @@ justify-content:center;
 .checkBox {
   display: block;
   cursor: pointer;
-
   width: 30px;
   height: 30px;
   margin: 5px;
@@ -337,6 +337,7 @@ justify-content:center;
   overflow: hidden;
   box-shadow: 0px 0px 0px 2px #fff;
 }
+
 
 .checkBox div {
   width: 60px;
@@ -389,7 +390,7 @@ justify-content:center;
 /****** FORMULARIO DENTRO DE BOX_FORMULARIO*******/
 .login-box {
   position: absolute;
-  top: 38%;
+  top: 50%;
   left: 50%;
   width: 400px;
   padding: 40px;
@@ -601,7 +602,7 @@ justify-content:center;
 #resultado_usuario{
   color:var(--texto-botones-logo);
   font-family: 'roboto';
-  font-size: 16px;
+  font-size: 15px;
 }
 #valor_actual_usuario{
   color: var(--texto-botones-logo);

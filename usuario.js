@@ -111,8 +111,9 @@ function validacion() {
     let email = emailInput.value;
     let password = document.getElementById("password").value;
     let accion = document.getElementsByName("accion")[0].value;
-    let expresionregularEmail = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
+    
     let emailIncorrecto = document.getElementById("emailIncorrecto");
+    let expresionregularEmail = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
     let passwordincorrecto = document.getElementById('passwordIncorrecto');
     let expresionRegularpassword = /^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+]).*$/;
 
@@ -136,7 +137,7 @@ function validacion() {
     // Validar contraseña y mostrar error si es necesario
     if (!passwordValida) {
         // Mostrar mensaje de error para contraseña
-        passwordincorrecto.innerText = "Password Incorrecto";
+        passwordincorrecto.innerText = "Password Incorrecto min 8 letras 1 caracter y 1 digito ";
         setTimeout(function () {
             passwordincorrecto.innerText = "";
         }, 10000);

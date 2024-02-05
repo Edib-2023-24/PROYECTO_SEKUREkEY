@@ -147,7 +147,6 @@ function registrar($conexion) {
 
 // LLAMO A LA FUNCION Y LE PASO COMO VALOR LA VARIABLE DE LA BBDD
 registrar($conexion);
-
 function registrarPassword($conexion) {
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
@@ -166,9 +165,14 @@ function registrarPassword($conexion) {
         // Límite de contraseñas
         $limiteRegistro = 10;
 
+        // Obtener el ID de la contraseña más antigua actualizada asociada al usuario
+        $consultaIdPasswordAntiguo = "SELECT id_password FROM passwordguardado WHERE id_usuario = $idUsuario ORDER BY fecha_actualizacion ASC LIMIT 1";
+        $resultadoIdPasswordAntiguo = mysqli_query($conexion, $consultaIdPasswordAntiguo);
+        $idPasswordAntiguo = mysqli_fetch_assoc($resultadoIdPasswordAntiguo)['id_password'];
+
         if ($datosConsultaTotal < $limiteRegistro) {
             // Insertar nueva contraseña asociada al usuario
-            $insertarPasswordBBDD = "INSERT INTO passwordguardado (id_usuario, password) VALUES ($idUsuario, '$resultadoPassword')";
+            $insertarPasswordBBDD = "INSERT INTO passwordguardado (id_usuario, password, fecha_actualizacion) VALUES ($idUsuario, '$resultadoPassword', NOW())";
             $resultadoInsertarPassword = mysqli_query($conexion, $insertarPasswordBBDD);
 
             if ($resultadoInsertarPassword) {
@@ -178,13 +182,8 @@ function registrarPassword($conexion) {
                 echo "Error al insertar: " . mysqli_error($conexion);
             }
         } else {
-            // Obtener el ID de la contraseña más antigua asociada al usuario
-            $consultaIdPasswordAntiguo = "SELECT id_password FROM passwordguardado WHERE id_usuario = $idUsuario ORDER BY id_password ASC LIMIT 1";
-            $resultadoIdPasswordAntiguo = mysqli_query($conexion, $consultaIdPasswordAntiguo);
-            $idPasswordAntiguo = mysqli_fetch_assoc($resultadoIdPasswordAntiguo)['id_password'];
-
-            // Actualizar la contraseña más antigua asociada al usuario
-            $actualizarPassword = "UPDATE passwordguardado SET password='$resultadoPassword' WHERE id_password = $idPasswordAntiguo";
+            // Actualizar la contraseña más antigua actualizada asociada al usuario
+            $actualizarPassword = "UPDATE passwordguardado SET password='$resultadoPassword', fecha_actualizacion=NOW() WHERE id_password = $idPasswordAntiguo";
             $resultadoActualizarPassword = mysqli_query($conexion, $actualizarPassword);
 
             if ($resultadoActualizarPassword) {
@@ -196,6 +195,7 @@ function registrarPassword($conexion) {
         }
     }
 }
+
 
 
 

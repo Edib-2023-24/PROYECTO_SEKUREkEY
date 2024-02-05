@@ -43,6 +43,7 @@
   <body>
     <div id="container">
       <?php  include 'header.php'?>
+      
       <main class="main_index">
 
       <section class="box_login">
@@ -52,7 +53,7 @@
 
 
 
- <div class="login-box">
+ <section class="login-box">
  <form action="funciones.php" method="post" onsubmit="return validacion()" novalidate>
     <div class="user-box">
         <input type="email" name="email" id="email" required="" placeholder="EMAIL">
@@ -68,7 +69,7 @@
 </form>
 
  
-  </div>
+</section>
 
 
 

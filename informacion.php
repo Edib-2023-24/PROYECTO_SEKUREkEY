@@ -68,10 +68,6 @@
 <p>Una contraseña creada por un generador de contraseñas será mucho más segura que cualquiera que se te pueda ocurrir. La seguridad de un generador de contraseñas depende de dos factores: la seguridad del sitio web generador de contraseñas y el software que emplea.
     Nuestro sitio generador de contraseñas cuenta con un cifrado seguro, que garantiza que ningún delincuente pueda acceder a las contraseñas generadas. En cuanto al software, nuestros algoritmos se aseguran de que cada contraseña generada sea lo bastante complicada, segura y única para proteger tus cuentas.</p>
 </section>
-<section class="texto_bloque_uno">
-<h2>¿Es seguro generar contraseñas online?</h2> 
-<p>Depende. Algunos proveedores poco serios pueden vincular tu dirección IP con las contraseñas que generan para ti y guardarlas en las bases de datos de posibles contraseñas, o tablas hash. Nuestro generador de contraseñas seguras se basa en JavaScript y utiliza una conexión SSL de alta seguridad. Si te desconectas de internet, seguirás pudiendo generar contraseñas, ya que no guardamos ninguna en nuestros servidores.</p>
-</section>
 
 
         </main>
