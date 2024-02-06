@@ -217,6 +217,7 @@ a {
   align-items: center;
   flex-direction: column;
   justify-content: space-around;
+ 
 }
 
 
@@ -228,14 +229,15 @@ a {
   align-items: center;
   display: flex;
   flex-direction: row;
-  justify-items: flex-start;
-  justify-content: center;
+ 
+  gap: 20px;
+  justify-content:center;
 }
 
 
 
 .resultado_index {
-  width: 500px;
+  width: 700px;
   height: 120px;
   border-radius: 50px;
   background-image: linear-gradient(to left bottom, #c5a9ba, #bb9ab7, #ad8cb7, #9981b9, #7e77bb, #5e7bbc, #397fb7, #0080ad, #178795, #4b897d, #6e8870, #858672);
@@ -602,7 +604,7 @@ justify-content:center;
 #resultado_usuario{
   color:var(--texto-botones-logo);
   font-family: 'roboto';
-  font-size: 15px;
+  font-size: 20px;
 }
 #valor_actual_usuario{
   color: var(--texto-botones-logo);

@@ -46,7 +46,7 @@ function passwordAleatorioUsuario(){
     // CREO UNOS CONDICIONALES Y RECORRO EL RESULTADO SI ES MENOS DE 8 SE MUESTRA UN COLOR DE FONDO Y NA PALABRA CON UN COLOR ESPECIFICO
     if (codigoPassword.length<=8) {
         
-        texto.innerHTML="BASICA";
+        texto.innerHTML="MALA";
         salidaResultado.style.backgroundColor="red";
         texto.style.color="red";
     }
@@ -71,7 +71,7 @@ function passwordAleatorioUsuario(){
     
     salidaResultado.textContent="";
     
-    },10000);
+    },5000);
     
     }
     // LLAMADA FUNCION GENERAR PASSWORD USUARIO
