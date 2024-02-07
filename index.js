@@ -1,40 +1,43 @@
-
-
-
-
-// FUNCION PARA GENERAR NUMERO ALEATORIO SIN USUARIO
 function passwordAleatorio() {
-    // RECOGO LOS VALORES DE LOS INPUTS Y EL RANGO DE NUMERO
-   let mayuscula=document.getElementById("mayusculas").checked;
-   let minusculas=document.getElementById("minusculas").checked;
-  let digitos=document.getElementById("digitos").checked;
-  let longitud=document.getElementById("rango_password").value;
-// CREO VARIABLE PARA GUARDAR EL RESULTADO
- let caracteres="";
-// CREO EXPRESION REGULAR CON MAYUSUCLA MINUSCULA Y NUMEROS
- let expresionMayusculas="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
- let expresionminusculas="abcdefghijklmnopqrstuvwxyz";
- let expresionDigitos="0123456789";
+    let mayuscula = document.getElementById("mayusculas").checked;
+    let minusculas = document.getElementById("minusculas").checked;
+    let digitos = document.getElementById("digitos").checked;
+    let longitud = document.getElementById("rango_password").value;
 
- // CREO CONDICIONALES PARA GUARDAR LOS INPUTS 
- if (mayuscula) {caracteres+=expresionMayusculas;}
- if (minusculas) {caracteres+=expresionminusculas;}
-if (digitos) { caracteres+=expresionDigitos;}
+    let caracteres = "";
+    let expresionMayusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let expresionminusculas = "abcdefghijklmnopqrstuvwxyz";
+    let expresionDigitos = "0123456789";
 
-// LLAMO A LA FUNCION GENERAR PASSWORD 
-let codigoPassword=generarPassword(caracteres,longitud);
+    if (mayuscula) { caracteres += expresionMayusculas; }
+    if (minusculas) { caracteres += expresionminusculas; }
+    if (digitos) { caracteres += expresionDigitos; }
 
-let salidaResultado=document.getElementById("resultado");
+    let codigoPassword = generarPassword(caracteres, longitud);
 
-salidaResultado.innerHTML=codigoPassword;
+    // CONDICIONALES PARA QUE HNO HAYA DOS CARACTERES IGUALES 
+    codigoPassword = codigoPassword.split('').reduce((prev, curr, i, arr) => {
+        if (i > 0 && arr[i - 1].toLowerCase() === curr.toLowerCase()) {
+            if (mayuscula && curr === curr.toUpperCase()) {
+                return prev + curr.toLowerCase();
+            } else if (minusculas && curr === curr.toLowerCase()) {
+                return prev + curr.toUpperCase();
+            } else if (digitos && !isNaN(curr)) {
+                return prev + ((parseInt(curr) + 1) % 10).toString();
+            }
+        }
+        return prev + curr;
+    }, "");
 
-// HAGO DESAPARARECER EL PASSWORD A LOS 5 SEGUNDOS
-setTimeout(function(){
-salidaResultado.textContent="";
+    let salidaResultado = document.getElementById("resultado");
+    salidaResultado.innerHTML = codigoPassword;
 
-},10000);
-
+    setTimeout(function () {
+        salidaResultado.textContent = "";
+    }, 10000);
 }
+
+
 // LLAMO A LA FUNCION PASSWORD ALEATORIO
 passwordAleatorio();
 

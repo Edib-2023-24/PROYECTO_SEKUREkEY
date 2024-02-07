@@ -615,3 +615,9 @@ justify-content:center;
 .mensajeErroneo{
   color: red;
 }
+#salidaTexto{
+  width: 150px;
+  height: 30px;
+  font-size: 20px;
+  
+}

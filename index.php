@@ -84,7 +84,7 @@
                         <section class="opciones_index">
                             <h3>Mayusculas</h3>
                             <h3>Minusculas</h3>
-                            <h3>Caracteres</h3>
+                            <h3>Digitos</h3>
                         </section>
                     </section>
 
