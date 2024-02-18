@@ -224,12 +224,13 @@ a {
   width: 100%;
   padding: 20px;
   height: 150px;
-  display: felx;
+  
   align-items: center;
   display: flex;
   flex-direction: row;
-  justify-items: flex-start;
-  justify-content: center;
+  
+  justify-content:center;
+  gap: 50px;
 }
 
 
