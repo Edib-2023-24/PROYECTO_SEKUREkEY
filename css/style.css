@@ -229,15 +229,8 @@ a {
   align-items: center;
   display: flex;
   flex-direction: row;
-<<<<<<< HEAD
-  
-  justify-content:center;
-  gap: 50px;
-=======
- 
-  gap: 20px;
-  justify-content:center;
->>>>>>> ae4e9f8fce6887e8826aa5b92efba06461897888
+  justify-items: flex-start;
+  justify-content: center;
 }
 
 
