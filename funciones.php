@@ -1,27 +1,13 @@
 <?php
 
 
-
+include 'conexion.php';
 
 
 
 // CONEXION CON LA BASE DE DATOS PARA GUARDAR LOS DATOS DEL USUARIO
 
-function conectarBaseDeDatos() {
-    $localhost = 'localhost';
-    $bbdd = 'registro';
-    $user = 'edib';
-    $passwordBbdd = 'edib';
-
-    $conexion = mysqli_connect($localhost, $user, $passwordBbdd, $bbdd);
-
-    if ($conexion) {
-        return $conexion;
-    } else {
-        die("Error en la conexión: " . mysqli_connect_error());
-    }
-}
-$conexion = conectarBaseDeDatos();
+$conexion = new Conexion();
 
 // PARA QUE SE PUEDA ELEGIR ETRE INICIO DE SESION O REGISTRO
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -35,44 +21,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 
-
 function inicioSesion($conexion){
-    
     if (isset($_POST['email']) && isset($_POST['password'])) {
         
         $email = trim($_POST['email']);
         $password = trim($_POST['password']);
 
-        
-       
-
-        // CREO LA CONSULTA PARA RECUPERAR EL MAIL
-        $recuperarConsulta = "SELECT id_usuario,email, password FROM usuarios WHERE email = '$email'";
-        
-        // RECUPERO EL RESULTADO DE LA CONSULTA
-        $resultadoRecuperacion = mysqli_query($conexion, $recuperarConsulta);
-        
-        // COMPRUEBO SI EL RESULTADO FUE CORRECTO 
-        if ($resultadoRecuperacion) {
-            $fila = mysqli_fetch_assoc($resultadoRecuperacion);
-           
+        try {
+            // CREO LA CONSULTA PARA RECUPERAR EL MAIL
+            $recuperarConsulta = "SELECT id_usuario, email, password FROM usuarios WHERE email = :email";
+            
+            // PREPARO LA CONSULTA
+            $stmt = $conexion->prepare($recuperarConsulta);
+            $stmt->bindParam(':email', $email);
+            
+            // EJECUTO LA CONSULTA
+            $stmt->execute();
+            
+            // OBTENGO EL RESULTADO DE LA CONSULTA
+            $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+            
             if ($fila) {
                 $emailRecuperado = $fila['email'];
                 $passwordHashRecuperado = $fila['password'];
-                 $IdInicio=$fila['id_usuario'];
-               
+                $IdInicio = $fila['id_usuario'];
 
-                
-                
-                 if (password_verify($password, $passwordHashRecuperado)) {
+                if (password_verify($password, $passwordHashRecuperado)) {
                     if (session_status() == PHP_SESSION_NONE) {
                         session_start();
                     }
-                    $_SESSION['userName']=$fila['email'];
-                    $_SESSION['id_usuario']=$fila['id_usuario'];
+                    $_SESSION['userName'] = $fila['email'];
+                    $_SESSION['id_usuario'] = $fila['id_usuario'];
                      
-                     
-                     header('Location: usuario.php');
+                    header('Location: usuario.php');
                     exit();
                 } else {
                     // REENVÍA A LA PÁGINA INDICANDO PASSWORD NO CORRECTO
@@ -84,9 +65,9 @@ function inicioSesion($conexion){
                 header('Location: errores.php');
                 exit();
             }
-        } else {
+        } catch (PDOException $e) {
             // ERROR EN LA CONSULTA
-            echo "Error al recuperar datos: " . mysqli_error($conexion);
+            echo "Error al recuperar datos: " . $e->getMessage();
         }
     }
 }
@@ -95,48 +76,42 @@ inicioSesion($conexion);
 
 
 
-
-    
-        
 function registrar($conexion) {
     // COMPROBAR SI LOS CAMPOS EMAIL Y PASSWORD ESTÁN DEFINIDOS EN LA PETICIÓN POST
     if (isset($_POST['email']) && isset($_POST['password'])) {
 
         $email = trim($_POST['email']);
-        
         $password = trim($_POST['password']);
 
+        try {
+            // VERIFICO SI EL CORREO ELECTRÓNICO YA EXISTE
+            $consultaEmailExistente = "SELECT id_usuario FROM usuarios WHERE email = :email";
+            $stmt = $conexion->prepare($consultaEmailExistente);
+            $stmt->bindParam(':email', $email);
+            $stmt->execute();
+            
+            if ($stmt->rowCount() > 0) {
+                // El correo electrónico ya existe, manejar el error o redirigir a una página de error
+                header("Location: error_intento_registro.php");
+                exit();
+            }
 
-          // VERIFICO SI EL CORREO ELECTRONICO YA EXISTE
-          $consultaEmailExistente = "SELECT id_usuario FROM usuarios WHERE email = '$email'";
-          $resultadoEmailExistente = mysqli_query($conexion, $consultaEmailExistente);
-  
-          if (mysqli_num_rows($resultadoEmailExistente) > 0) {
-              // El correo electrónico ya existe, manejar el error o redirigir a una página de error
-              header("Location:error_intento_registro.php");
-              exit();
-          }
-       
+            // HASHEO EL PASSWORD PARA DARLE SEGURIDAD
+            $hash = password_hash($password, PASSWORD_DEFAULT);
 
-        // HASHEO EL PASSWORD PARA DARLE SEGURIDAD
-        $hash = password_hash($password, PASSWORD_DEFAULT);
+            // INSERTAR DATOS DEL USUARIO EN LA BBDD
+            $insertarDatos = "INSERT INTO usuarios (email, password) VALUES (:email, :password)";
+            $stmt = $conexion->prepare($insertarDatos);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':password', $hash);
+            $stmt->execute();
 
-        // COMPRUEBO SI EL CORRECO ELECTRONICO EXISTEN EN LA BDDD
-        $consultaEmailExistente = "SELECT id_usuario FROM usuarios WHERE email = '$email'";
-        $resultadoEmailExistente = mysqli_query($conexion, $consultaEmailExistente);
-
-        // INSERTAR DATOS DEL USUARIO EN LA BBDD
-        $insertarDatos = "INSERT INTO `usuarios` (`id_usuario`, `email`, `password`) VALUES (NULL, '$email', '$hash')";
-        $resultado = mysqli_query($conexion, $insertarDatos);
-
-        if ($resultado) {
-            // REENVIA A LA PAGINA LOGIN UNA VEZ INSERTADO LOS DATOS
+            // REENVÍA A LA PÁGINA DE REGISTRO REALIZADO UNA VEZ INSERTADOS LOS DATOS
             header("Location: registro_realizado.php");
             exit();
-        } else {
+        } catch (PDOException $e) {
             // CONTROLO LOS POSIBLES ERRORES
-            
-            echo "Error al recuperar datos: " . mysqli_error($conexion);
+            echo "Error al insertar datos: " . $e->getMessage();
             exit();
         }
     } else {
@@ -145,8 +120,10 @@ function registrar($conexion) {
     }
 }
 
+
 // LLAMO A LA FUNCION Y LE PASO COMO VALOR LA VARIABLE DE LA BBDD
 registrar($conexion);
+
 function registrarPassword($conexion) {
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
@@ -156,42 +133,48 @@ function registrarPassword($conexion) {
         $resultadoPassword = $_POST['resultadoPassword'];
         $idUsuario = $_SESSION['id_usuario'];
 
-        // Consultar el total de contraseñas asociadas al usuario
-        $consultaTotalRegistros = "SELECT COUNT(*) as total FROM passwordguardado WHERE id_usuario = $idUsuario";
-        $resultadoConsulta = mysqli_query($conexion, $consultaTotalRegistros);
-        $datosConsulta = mysqli_fetch_assoc($resultadoConsulta);
-        $datosConsultaTotal = $datosConsulta['total'];
+        try {
+            // Consultar el total de contraseñas asociadas al usuario
+            $consultaTotalRegistros = "SELECT COUNT(*) as total FROM passwordguardado WHERE id_usuario = :idUsuario";
+            $stmt = $conexion->prepare($consultaTotalRegistros);
+            $stmt->bindParam(':idUsuario', $idUsuario);
+            $stmt->execute();
+            $datosConsulta = $stmt->fetch(PDO::FETCH_ASSOC);
+            $datosConsultaTotal = $datosConsulta['total'];
 
-        // Límite de contraseñas
-        $limiteRegistro = 10;
+            // Límite de contraseñas
+            $limiteRegistro = 10;
 
-        // Obtener el ID de la contraseña más antigua actualizada asociada al usuario
-        $consultaIdPasswordAntiguo = "SELECT id_password FROM passwordguardado WHERE id_usuario = $idUsuario ORDER BY fecha_actualizacion ASC LIMIT 1";
-        $resultadoIdPasswordAntiguo = mysqli_query($conexion, $consultaIdPasswordAntiguo);
-        $idPasswordAntiguo = mysqli_fetch_assoc($resultadoIdPasswordAntiguo)['id_password'];
+            // Obtener el ID de la contraseña más antigua actualizada asociada al usuario
+            $consultaIdPasswordAntiguo = "SELECT id_password FROM passwordguardado WHERE id_usuario = :idUsuario ORDER BY fecha_actualizacion ASC LIMIT 1";
+            $stmt = $conexion->prepare($consultaIdPasswordAntiguo);
+            $stmt->bindParam(':idUsuario', $idUsuario);
+            $stmt->execute();
+            $idPasswordAntiguo = $stmt->fetchColumn();
 
-        if ($datosConsultaTotal < $limiteRegistro) {
-            // Insertar nueva contraseña asociada al usuario
-            $insertarPasswordBBDD = "INSERT INTO passwordguardado (id_usuario, password, fecha_actualizacion) VALUES ($idUsuario, '$resultadoPassword', NOW())";
-            $resultadoInsertarPassword = mysqli_query($conexion, $insertarPasswordBBDD);
+            if ($datosConsultaTotal < $limiteRegistro) {
+                // Insertar nueva contraseña asociada al usuario
+                $insertarPasswordBBDD = "INSERT INTO passwordguardado (id_usuario, password, fecha_actualizacion) VALUES (:idUsuario, :password, NOW())";
+                $stmt = $conexion->prepare($insertarPasswordBBDD);
+                $stmt->bindParam(':idUsuario', $idUsuario);
+                $stmt->bindParam(':password', $resultadoPassword);
+                $stmt->execute();
 
-            if ($resultadoInsertarPassword) {
                 header("Location: usuario.php");
                 exit();
             } else {
-                echo "Error al insertar: " . mysqli_error($conexion);
-            }
-        } else {
-            // Actualizar la contraseña más antigua actualizada asociada al usuario
-            $actualizarPassword = "UPDATE passwordguardado SET password='$resultadoPassword', fecha_actualizacion=NOW() WHERE id_password = $idPasswordAntiguo";
-            $resultadoActualizarPassword = mysqli_query($conexion, $actualizarPassword);
+                // Actualizar la contraseña más antigua actualizada asociada al usuario
+                $actualizarPassword = "UPDATE passwordguardado SET password=:password, fecha_actualizacion=NOW() WHERE id_password = :idPasswordAntiguo";
+                $stmt = $conexion->prepare($actualizarPassword);
+                $stmt->bindParam(':password', $resultadoPassword);
+                $stmt->bindParam(':idPasswordAntiguo', $idPasswordAntiguo);
+                $stmt->execute();
 
-            if ($resultadoActualizarPassword) {
                 header("Location: usuario.php");
                 exit();
-            } else {
-                echo "Error al actualizar: " . mysqli_error($conexion);
             }
+        } catch (PDOException $e) {
+            echo "Error al insertar o actualizar la contraseña: " . $e->getMessage();
         }
     }
 }
@@ -202,10 +185,20 @@ function registrarPassword($conexion) {
 // LLAMO A LA FUNCION
 registrarPassword($conexion);
      
-       
+// FUNCION MOSTRAR PASSWORD 
+
+function mostrarPassword(){
+
+   
+
+
+
+}
+
+
 
 // CIERRO LA CONEXION A LA BBDD
-mysqli_close($conexion);
+unset($conexion);
 
 
 ?>

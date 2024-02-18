@@ -45,7 +45,7 @@
             <section class="box_contenedor_foto">
               
                 <section class="foto">
-                    <img src="./img/desktop/imagen_candado.webp" alt="">
+                    <img src="./img/desktop/imagen_candado.avif" alt="">
                 </section>
 
                 <section class="texto">

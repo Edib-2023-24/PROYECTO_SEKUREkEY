@@ -59,7 +59,8 @@
 
  <div class="login-box">
  
-    <form action="funciones.php" method="post">
+    <form action="funciones.php" method="post"
+    >
       <div class="user-box">
         <input type="email" name="email" id="email" required="">
         <label>Email</label>
