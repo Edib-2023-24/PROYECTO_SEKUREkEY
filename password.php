@@ -1,3 +1,15 @@
+<?php
+
+
+include 'funciones.php';
+
+$conexion = new Conexion();
+
+if (isset($_SESSION['id_usuario'])) {
+  $resultados = mostrarPassword($conexion);
+ 
+}
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -41,12 +53,31 @@
     <!-- Código de las plataformas de Análisis -->
     <script></script>
     <!-- Scripts a cargar antes de la renderización -->
-    <script src="preloader.js"></script>
+   
   </head>
   <body>
     <div id="container">
       <?php  include 'header_usuario.php'?>
-      <main class="main_index"></main>
+
+      <main class="main_index">
+        <section class="box_password">
+<?php
+echo "=================CONTRASEÑAS===================";
+echo "<br><br>";
+
+
+if (is_array($resultados)) {
+  foreach ($resultados as $resultado) {
+    
+      echo  $resultado['password'] . "<br><br>" ;
+     
+  }echo "=================================================";
+} else {
+  echo "No se encontraron resultados.";
+}
+?>
+</section>
+      </main>
       <?php include 'footer.php'?>
     </div>
 

@@ -134,7 +134,7 @@ function registrarPassword($conexion) {
         $idUsuario = $_SESSION['id_usuario'];
 
         try {
-            // Consultar el total de contraseñas asociadas al usuario
+            // HAGO UNA CONSULTA PARA SABER EL TOTAL DE CONTRASEÑAS ASOCIADO AL USUARIO
             $consultaTotalRegistros = "SELECT COUNT(*) as total FROM passwordguardado WHERE id_usuario = :idUsuario";
             $stmt = $conexion->prepare($consultaTotalRegistros);
             $stmt->bindParam(':idUsuario', $idUsuario);
@@ -142,10 +142,10 @@ function registrarPassword($conexion) {
             $datosConsulta = $stmt->fetch(PDO::FETCH_ASSOC);
             $datosConsultaTotal = $datosConsulta['total'];
 
-            // Límite de contraseñas
+            // PONGO UN LIMITE DE 10 CONTRASEÑAS 
             $limiteRegistro = 10;
 
-            // Obtener el ID de la contraseña más antigua actualizada asociada al usuario
+            // OBTENG EL ID MAS ANTIGUO ASOCIADO ALUSUARIO
             $consultaIdPasswordAntiguo = "SELECT id_password FROM passwordguardado WHERE id_usuario = :idUsuario ORDER BY fecha_actualizacion ASC LIMIT 1";
             $stmt = $conexion->prepare($consultaIdPasswordAntiguo);
             $stmt->bindParam(':idUsuario', $idUsuario);
@@ -153,7 +153,7 @@ function registrarPassword($conexion) {
             $idPasswordAntiguo = $stmt->fetchColumn();
 
             if ($datosConsultaTotal < $limiteRegistro) {
-                // Insertar nueva contraseña asociada al usuario
+                // INSERTAR NUEVA CONTRASEÑA ASOCIADA AL USUARIO
                 $insertarPasswordBBDD = "INSERT INTO passwordguardado (id_usuario, password, fecha_actualizacion) VALUES (:idUsuario, :password, NOW())";
                 $stmt = $conexion->prepare($insertarPasswordBBDD);
                 $stmt->bindParam(':idUsuario', $idUsuario);
@@ -163,7 +163,7 @@ function registrarPassword($conexion) {
                 header("Location: usuario.php");
                 exit();
             } else {
-                // Actualizar la contraseña más antigua actualizada asociada al usuario
+                // ACTUALIZAR LA CONTRASEÑA MAS ANTIGUA ASOCIADA AL USUARIO
                 $actualizarPassword = "UPDATE passwordguardado SET password=:password, fecha_actualizacion=NOW() WHERE id_password = :idPasswordAntiguo";
                 $stmt = $conexion->prepare($actualizarPassword);
                 $stmt->bindParam(':password', $resultadoPassword);
@@ -187,14 +187,40 @@ registrarPassword($conexion);
      
 // FUNCION MOSTRAR PASSWORD 
 
-function mostrarPassword(){
+function mostrarPassword($conexion){
 
-   
+   if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+   }
+   if (isset($_SESSION['id_usuario'])) {
+
+    
+    $idUsuario = $_SESSION['id_usuario'];
+
+    try {
+        // REALIZO UNA CONSLTA PARA RECUPERAR LAS CONTRASEÑAS A TRAVES DEL ID DEL USUARIO
+
+        $recuperarPassword="SELECT password FROM `passwordguardado` WHERE id_usuario=:idUsuario";
+        $stmt=$conexion->prepare($recuperarPassword);
+        $stmt->bindParam(':idUsuario', $idUsuario);
+        $stmt->execute();
+
+        
+        // OBTENGO LOS RESULTADOS
+        $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+          // DEVUELVO LOS RESULTADOS
+          return $resultados;
+
+    } catch (\Throwable $th) {
+        
+    }
+   }
 
 
 
 }
-
+$resultados = mostrarPassword($conexion);
 
 
 // CIERRO LA CONEXION A LA BBDD
