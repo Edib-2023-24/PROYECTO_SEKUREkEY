@@ -4,10 +4,10 @@
 // CREO LA CONEXON CON PDO PARA DARLE MAS SEUGIRAD A LA CONEXION 
 class Conexion extends PDO {
 
-    private $localhost = "localhost";
-    private $bbdd = "registro";
-    private $user = "edib";
-    private $password = "edib";
+    private $localhost = "bbdd.pedrocaaveiroedib.com";
+    private $bbdd = "ddb219877";
+    private $user = "ddb219877";
+    private $password = "Selena2017";
 
     public function __construct() {
         try {
