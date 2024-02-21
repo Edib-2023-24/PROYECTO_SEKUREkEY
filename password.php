@@ -69,10 +69,13 @@ echo "<br><br>";
 if (is_array($resultados)) {
   foreach ($resultados as $resultado) {
     
-      echo  $resultado['password'] . "<br><br>" ;
+      echo  $resultado['password'] . "<br>" ;
      
-  }echo "=================================================";
+  }
+  echo"<br>";
+  echo "=================================================";
 } else {
+  
   echo "No se encontraron resultados.";
 }
 ?>
