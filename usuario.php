@@ -49,7 +49,6 @@
       <section class="box_principal_index">
                 <h1>Genere una contraseña aleatoria y segura al instante con la herramienta online de SEKUREKEY</h1>
                 <section class="box_resultado_index">
-                    <p id="salidaTexto"></p>
                     <section class="resultado_index" id="resultado_usuario"></section>
                     <button class="botones_inicio" onclick="passwordAleatorioUsuario()"><span>GENERAR</span></button>
                     
