@@ -1,3 +1,5 @@
+
+
 function passwordAleatorio() {
     let mayuscula = document.getElementById("mayusculas").checked;
     let minusculas = document.getElementById("minusculas").checked;
@@ -16,17 +18,17 @@ function passwordAleatorio() {
     let codigoPassword = generarPassword(caracteres, longitud);
 
     // CONDICIONALES PARA QUE HNO HAYA DOS CARACTERES IGUALES 
-    codigoPassword = codigoPassword.split('').reduce((prev, curr, i, arr) => {
-        if (i > 0 && arr[i - 1].toLowerCase() === curr.toLowerCase()) {
-            if (mayuscula && curr === curr.toUpperCase()) {
-                return prev + curr.toLowerCase();
-            } else if (minusculas && curr === curr.toLowerCase()) {
-                return prev + curr.toUpperCase();
-            } else if (digitos && !isNaN(curr)) {
-                return prev + ((parseInt(curr) + 1) % 10).toString();
+    codigoPassword = codigoPassword.split('').reduce((resultadoParcial, elementoActual, i, original) => {
+        if (i > 0 && original[i - 1].toLowerCase() === elementoActual.toLowerCase()) {
+            if (mayuscula && elementoActual === elementoActual.toUpperCase()) {
+                return resultadoParcial + elementoActual.toLowerCase();
+            } else if (minusculas && elementoActual === elementoActual.toLowerCase()) {
+                return resultadoParcial + elementoActual.toUpperCase();
+            } else if (digitos && !isNaN(elementoActual)) {
+                return resultadoParcial + ((parseInt(elementoActual) + 1) % 10).toString();
             }
         }
-        return prev + curr;
+        return resultadoParcial + elementoActual;
     }, "");
 
     let salidaResultado = document.getElementById("resultado");
@@ -45,7 +47,7 @@ passwordAleatorio();
 
 
 
-/******** MUESTRO EL NUMERO QAL DESLIZAR LA BARRA DE RANGO  */
+/******** MUESTRO EL NUMERO QAL DESLIZAR LA BoriginalA DE RANGO  */
 
 let rango=document.getElementById("rango_password");
   let valor_actual=document.getElementById("valor_actual");
