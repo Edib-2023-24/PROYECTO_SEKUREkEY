@@ -31,7 +31,7 @@ if (isset($_SESSION['userName'])) {
 </head>
 <body>
     <header class="header">
-    <img class="logo" src="./img/desktop/LOGO.png" alt="logo">
+    <picture class="logo"></picture>
     <h1>SEKUREKEY</h1>
     
       <a class="botones_inicio" href="logout.php"><span>LOGOUT</span></a>

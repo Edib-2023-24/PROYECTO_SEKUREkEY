@@ -29,7 +29,7 @@
     <nav class="box_footer_rrss">
         <a href="https://instagram.com/"><img src="./img/desktop/INSTAGRAM.png" alt="Instagram"></a>
         <a href="https://twitter.com/"><img src="./img/desktop/TWITTER.png" alt=""></a>
-        <a href="https://facebook.com/"><img src="./img/desktop/FACEBOOK.png" alt=""></a>
+        <a href="https://facebook.com/"><img src="./img/desktop/facebook.png" alt=""></a>
     </nav>
 
 
