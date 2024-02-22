@@ -34,17 +34,17 @@ function passwordAleatorioUsuario() {
     let codigoPassword = generarPassword(resultado, longitud);
 
     // COMPRUEBO SI NO HAY DOS CARACTERS GIUALES 
-    codigoPassword = codigoPassword.split('').reduce((prev, curr, i, arr) => {
+    codigoPassword = codigoPassword.split('').reduce((resultadoParcial, elmentoActual, i, original) => {
         if (i > 0) {
-            let prevChar = arr[i - 1];
-            if ((mayuscula && curr === curr.toUpperCase() && prevChar === prevChar.toUpperCase()) ||
-                (minusculas && curr === curr.toLowerCase() && prevChar === prevChar.toLowerCase()) ||
-                (digitos && !isNaN(curr) && !isNaN(prevChar)) ||
-                (caracteres && expresionCaracteres.includes(curr) && expresionCaracteres.includes(prevChar))) {
-                return prev + generarPassword(resultado.replace(curr, ''), 1);
+            let prevChar = original[i - 1];
+            if ((mayuscula && elmentoActual === elmentoActual.toUpperCase() && prevChar === prevChar.toUpperCase()) ||
+                (minusculas && elmentoActual === elmentoActual.toLowerCase() && prevChar === prevChar.toLowerCase()) ||
+                (digitos && !isNaN(elmentoActual) && !isNaN(prevChar)) ||
+                (caracteres && expresionCaracteres.includes(elmentoActual) && expresionCaracteres.includes(prevChar))) {
+                return resultadoParcial + generarPassword(resultado.replace(elmentoActual, ''), 1);
             }
         }
-        return prev + curr;
+        return resultadoParcial + elmentoActual;
     }, "");
 // MUESTRO POR PANTALLA
     let salidaResultado = document.getElementById("resultado_usuario");

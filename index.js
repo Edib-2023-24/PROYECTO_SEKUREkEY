@@ -1,20 +1,22 @@
 
 
 function passwordAleatorio() {
+    // CHEQUEO Y GUARDO EN  VARIABLES 
     let mayuscula = document.getElementById("mayusculas").checked;
     let minusculas = document.getElementById("minusculas").checked;
     let digitos = document.getElementById("digitos").checked;
     let longitud = document.getElementById("rango_password").value;
-
+    // CREO LAS VARIAVBLES CON LAS MAYUSUCULAS,MINUSUCLAS Y DIGITOS 
     let caracteres = "";
     let expresionMayusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     let expresionminusculas = "abcdefghijklmnopqrstuvwxyz";
     let expresionDigitos = "0123456789";
-
+    // GUARDO EN LAS VARIABLES SI SON TRUE AL HABER CHEQUEADO LAS MAYUSUCLAS ,MINUSCULAS Y DIGITOS
     if (mayuscula) { caracteres += expresionMayusculas; }
     if (minusculas) { caracteres += expresionminusculas; }
     if (digitos) { caracteres += expresionDigitos; }
 
+    // CUARDO EN UNA VARIABLE LA FUNCION PARA GENERAR EL PASSWORD LE PASO LA VARIABLE DONDE SE GUARDO LA MAYUSCULA,MINUSUCLA Y DIGITOS Y LA VARIABLE DE LA LONGITUD DE3LE PASSWORD
     let codigoPassword = generarPassword(caracteres, longitud);
 
     // CONDICIONALES PARA QUE HNO HAYA DOS CARACTERES IGUALES 
@@ -30,10 +32,10 @@ function passwordAleatorio() {
         }
         return resultadoParcial + elementoActual;
     }, "");
-
+// MUESTRO EL PASSWORD 
     let salidaResultado = document.getElementById("resultado");
     salidaResultado.innerHTML = codigoPassword;
-
+// UTILIZO LA FUNCION SETIMEOUT PARA QUE SE VEA EL PASSWORD 10 SEGUNDOS Y LUEGO DESAPAREZCA
     setTimeout(function () {
         salidaResultado.textContent = "";
     }, 10000);
