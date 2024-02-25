@@ -3,8 +3,6 @@
 
 include 'conexion.php';
 
-
-
 // CONEXION CON LA BASE DE DATOS PARA GUARDAR LOS DATOS DEL USUARIO
 
 $conexion = new Conexion();
@@ -216,8 +214,6 @@ function mostrarPassword($conexion){
         
     }
    }
-
-
 
 }
 $resultados = mostrarPassword($conexion);
